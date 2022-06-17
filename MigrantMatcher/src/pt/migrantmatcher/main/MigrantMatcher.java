@@ -1,30 +1,34 @@
 package pt.migrantmatcher.main;
-import java.util.Scanner;
-import pt.migrantmatcher.strategy.*;
+import pt.migrantmatcher.domain.*;
+import pt.migrantmatcher.handlers.*;
 
+/**
+ * 
+ * @author Joao Cavalcanti Assis 56325
+ * 
+ * Classe que representa o software MigrantMathcer
+ *
+ */
 public class MigrantMatcher {
 	
-	private static VoluntarioStrategy vs;
-	private static MigranteStrategy ms;
-
-	public static void main (String []args) {
-		int i = 0;
-		while (i == 0) {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Se quer ajudar, digite ajuda, se quer pedir ajuda, digite pedir.");
-			String str = sc.nextLine();
-			if (str.equals("ajuda")) {
-				vs.main(); 
-				i++;
-			}
-			else if (str.equals("pedir")) {
-				ms.main();
-				i++;
-			}
-			else {
-				System.out.println("Essa opcao nao existe, escolha novamente");
-			}
-			sc.close();
-		}
+	private CatalogoVoluntarios catV;
+	private CatalogoMigrantes catM;
+	private CatalogoRegioes catR;
+	
+	/**
+	 * Construtor do MigrantMatcher
+	 */
+	public MigrantMatcher () {
+		this.catV = new CatalogoVoluntarios();
+		this.catM = new CatalogoMigrantes();
+		this.catR = new CatalogoRegioes();
+	}
+	
+	public AdicionaVoluntarioHandler getVoluntarioHandler () {
+		return new AdicionaVoluntarioHandler (catV, catR);
+	}
+	
+	public AdicionaMigranteHandler getMigranteHandler () {
+		return new AdicionaMigranteHandler (catM, catR, catV);
 	}
 }

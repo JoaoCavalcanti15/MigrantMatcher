@@ -1,20 +1,41 @@
 package pt.migrantmatcher.domain;
 import java.util.List;
+import java.util.ArrayList;
 
+/**
+ * 
+ * @author Joao Cavalcanti Assis 56325
+ * 
+ * Classe que representa um catalogo de regioes para ajuda
+ * 
+ */
 public class CatalogoRegioes {
 
 	private List<Regiao> lr;
+
 	
-	public CatalogoRegioes(List<Regiao> lr) {
-		this.lr = lr;
+	/**
+	 * Construtor do catalogo
+	 */
+	public CatalogoRegioes() {
+		this.lr = new ArrayList<>();
 	}
 	
-	public Regiao criarRegião (String nome, List<VoluntarioAlojamento> la) {
-		Regiao r = new Regiao(nome, la);
+	/**
+	 * Metodo que cria e adiciona uma nova regiao ao catalogo
+	 * 
+	 * @param nome
+	 */
+	public void criarRegião (String nome) {
+		Regiao r = new Regiao(nome);
 		lr.add(r);
-		return r;
 	}
 	
+	/**
+	 * Metodo que devolve lista das regioes 
+	 * 
+	 * @return lista regioes
+	 */
 	public List<Regiao> getRegioes () {
 		return lr;
 	}
